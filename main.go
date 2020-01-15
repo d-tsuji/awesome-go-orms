@@ -37,9 +37,15 @@ type Repo struct {
 }
 
 func main() {
+	if err := run(); err != nil {
+		log.Fatalf("%+v", err)
+	}
+}
+
+func run() error {
 	content, err := ioutil.ReadFile("list.txt")
 	if err != nil {
-		log.Fatalf("%+v", err)
+		return fmt.Errorf("file read: %s", err)
 	}
 	lines := strings.Split(string(content), "\n")
 
@@ -47,22 +53,27 @@ func main() {
 	for _, url := range lines {
 		if strings.HasPrefix(url, gitHubUrl) {
 			var r Repo
-			func() {
+			fn := func() error {
 				apiUrl := getApiUrl(url)
-				fmt.Println(apiUrl)
 				resp, err := http.Get(apiUrl)
 				if err != nil {
-					log.Fatalf("error http get request. error: %+v", err)
+					return fmt.Errorf("http get request: %s", err)
 				}
 				defer resp.Body.Close()
 				if resp.StatusCode != http.StatusOK {
-					log.Fatalf("error response code. resp.StatusCode: %d", resp.StatusCode)
+					return fmt.Errorf("response code: %d", resp.StatusCode)
 				}
 				if err := json.NewDecoder(resp.Body).Decode(&r); err != nil {
-					log.Fatalf("error json decode. error: %+v", err)
+					return fmt.Errorf("json decode: %s", err)
 				}
+				return nil
 			}()
+			if err := fn; err != nil {
+				return err
+			}
 			repos = append(repos, r)
+		} else if url != "" {
+			log.Printf("url: %s is not supported\n", url)
 		}
 	}
 
@@ -70,8 +81,9 @@ func main() {
 		return repos[i].Stars > repos[j].Stars
 	})
 	if err := writeREADME(repos); err != nil {
-		log.Fatalf("error writeREADME. error: %+v", err)
+		return fmt.Errorf("writeREADME: %s", err)
 	}
+	return nil
 }
 
 func getApiUrl(repoUrl string) string {
