@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"sort"
 	"strings"
@@ -50,11 +51,14 @@ func run() error {
 	lines := strings.Split(string(content), "\n")
 
 	var repos []Repo
-	for _, url := range lines {
-		if strings.HasPrefix(url, gitHubUrl) {
+	for _, line := range lines {
+		if strings.HasPrefix(line, gitHubUrl) {
 			var r Repo
 			fn := func() error {
-				apiUrl := getApiUrl(url)
+				apiUrl, err := getApiUrl(line)
+				if err != nil {
+					return fmt.Errorf("get apiurl: %s", err)
+				}
 				resp, err := http.Get(apiUrl)
 				if err != nil {
 					return fmt.Errorf("http get request: %s", err)
@@ -72,8 +76,8 @@ func run() error {
 				return err
 			}
 			repos = append(repos, r)
-		} else if url != "" {
-			log.Printf("url: %s is not supported\n", url)
+		} else if line != "" {
+			log.Printf("url: %s is not supported\n", line)
 		}
 	}
 
@@ -86,12 +90,15 @@ func run() error {
 	return nil
 }
 
-func getApiUrl(repoUrl string) string {
-	repoName := strings.TrimPrefix(repoUrl, gitHubUrl)
-	repoName = strings.TrimFunc(repoName, func(r rune) bool {
+func getApiUrl(repoUrl string) (string, error) {
+	repoUrl = strings.TrimFunc(repoUrl, func(r rune) bool {
 		return unicode.IsSpace(r) || (r == rune('/'))
 	})
-	return fmt.Sprintf("https://api.github.com/repos/%s", repoName)
+	parsedUrl, err := url.Parse(repoUrl)
+	if err != nil {
+		return "", err
+	}
+	return fmt.Sprintf("https://api.github.com/%s", "repos" + parsedUrl.Path), nil
 }
 
 func writeREADME(repos []Repo) error {
