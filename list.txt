@@ -19,3 +19,4 @@ https://github.com/upper/db
 https://github.com/go-xorm/xorm
 https://github.com/albrow/zoom
 https://github.com/jmoiron/sqlx
+https://github.com/runner-mei/GoBatis
