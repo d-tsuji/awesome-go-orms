@@ -23,8 +23,6 @@ Please update **list.txt** (via Pull Request)
 | ------------ | ----- | ----- | ----------- | ----------- | ----------- |
 `
 	tail = "\n*Last Automatic Update: %v*"
-
-	gitHubUrl = "https://github.com/"
 )
 
 type Repo struct {
@@ -48,18 +46,18 @@ func run() error {
 	if err != nil {
 		return fmt.Errorf("file read: %s", err)
 	}
-	lines := strings.Split(string(content), "\n")
+	urls := strings.Split(string(content), "\n")
 
 	var repos []Repo
-	for _, line := range lines {
-		if strings.HasPrefix(line, gitHubUrl) {
+	for _, url := range urls {
+		if strings.HasPrefix(url, "https://github.com/") {
 			var r Repo
 			fn := func() error {
-				apiUrl, err := getApiUrl(line)
+				apiURL, err := getURL(url)
 				if err != nil {
-					return fmt.Errorf("get apiurl: %s", err)
+					return fmt.Errorf("get URL for api call: %s", err)
 				}
-				resp, err := http.Get(apiUrl)
+				resp, err := http.Get(apiURL)
 				if err != nil {
 					return fmt.Errorf("http get request: %s", err)
 				}
@@ -76,8 +74,8 @@ func run() error {
 				return err
 			}
 			repos = append(repos, r)
-		} else if line != "" {
-			log.Printf("url: %s is not supported\n", line)
+		} else if url != "" {
+			log.Printf("URL: %s is not supported\n", url)
 		}
 	}
 
@@ -90,15 +88,15 @@ func run() error {
 	return nil
 }
 
-func getApiUrl(repoUrl string) (string, error) {
-	repoUrl = strings.TrimFunc(repoUrl, func(r rune) bool {
+func getURL(repoURL string) (string, error) {
+	repoURL = strings.TrimFunc(repoURL, func(r rune) bool {
 		return unicode.IsSpace(r) || (r == rune('/'))
 	})
-	parsedUrl, err := url.Parse(repoUrl)
+	parsedURL, err := url.Parse(repoURL)
 	if err != nil {
 		return "", err
 	}
-	return fmt.Sprintf("https://api.github.com/%s", "repos" + parsedUrl.Path), nil
+	return fmt.Sprintf("https://api.github.com/%s", "repos" + parsedURL.Path), nil
 }
 
 func writeREADME(repos []Repo) error {
