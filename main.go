@@ -25,7 +25,8 @@ Please update **list.txt** (via Pull Request)
 | Project Name | Stars | Forks | Open Issues | Description | Last Update |
 | ------------ | ----- | ----- | ----------- | ----------- | ----------- |
 `
-	tail = "\n*Last Automatic Update: %v*"
+	tail         = "\n*Last Automatic Update: %v*"
+	listFileName = "list.txt"
 )
 
 // Repo is the structure that represents the schema of the github api.
@@ -47,7 +48,7 @@ func main() {
 }
 
 func run() error {
-	f, err := os.Open("list.txt")
+	f, err := os.Open(listFileName)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -85,6 +86,9 @@ func run() error {
 		} else if repoName != "" {
 			log.Printf("URL: %s is not supported\n", repoName)
 		}
+	}
+	if err := sc.Err(); err != nil {
+		return fmt.Errorf("scan %s: %w", listFileName, err)
 	}
 
 	sort.Slice(repos, func(i, j int) bool {
