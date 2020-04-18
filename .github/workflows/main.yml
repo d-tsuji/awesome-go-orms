@@ -9,17 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Check out code
-      uses: actions/checkout@v2
-      with:
-        ref: "master"
+    - name: Checkout code
+      uses: actions/checkout@master
 
-    - name: Set up Go
+    - name: Setup Go
       uses: actions/setup-go@v1
-      with:
-        go-version: 1.13
+        with:
+          go-version: 1.x
 
-    - name: update README
+    - name: Update README
       env:
         GITHUB_USER: "d-tsuji"
         GITHUB_EMAIL: ${{ secrets.GITHUB_EMAIL }}
