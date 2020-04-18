@@ -1,10 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -13,6 +13,8 @@ import (
 	"strings"
 	"time"
 	"unicode"
+
+	"github.com/Songmu/flextime"
 )
 
 const (
@@ -43,31 +45,34 @@ func main() {
 }
 
 func run() error {
-	content, err := ioutil.ReadFile("list.txt")
+	f, err := os.Open("list.txt")
 	if err != nil {
-		return fmt.Errorf("file read: %s", err)
+		log.Fatal(err)
 	}
-	urls := strings.Split(string(content), "\n")
+	defer f.Close()
+
+	sc := bufio.NewScanner(f)
 
 	var repos []Repo
-	for _, url := range urls {
-		if strings.HasPrefix(url, "https://github.com/") {
+	for sc.Scan() {
+		repoName := sc.Text()
+		if strings.HasPrefix(repoName, "https://github.com/") {
 			var r Repo
 			fn := func() error {
-				apiURL, err := getURL(url)
+				apiURL, err := getURL(repoName)
 				if err != nil {
-					return fmt.Errorf("get URL for api call: %s", err)
+					return fmt.Errorf("get URL for api call: %w", err)
 				}
 				resp, err := http.Get(apiURL)
 				if err != nil {
-					return fmt.Errorf("http get request: %s", err)
+					return fmt.Errorf("http get request: %w", err)
 				}
 				defer resp.Body.Close()
 				if resp.StatusCode != http.StatusOK {
 					return fmt.Errorf("response code: %d", resp.StatusCode)
 				}
 				if err := json.NewDecoder(resp.Body).Decode(&r); err != nil {
-					return fmt.Errorf("json decode: %s", err)
+					return fmt.Errorf("json decode: %w", err)
 				}
 				return nil
 			}()
@@ -75,21 +80,22 @@ func run() error {
 				return err
 			}
 			repos = append(repos, r)
-		} else if url != "" {
-			log.Printf("URL: %s is not supported\n", url)
+		} else if repoName != "" {
+			log.Printf("URL: %s is not supported\n", repoName)
 		}
 	}
 
 	sort.Slice(repos, func(i, j int) bool {
 		return repos[i].Stars > repos[j].Stars
 	})
+
 	readme, err := os.Create("README.md")
 	if err != nil {
 		return err
 	}
 	defer readme.Close()
 	if err := writeREADME(readme, repos); err != nil {
-		return fmt.Errorf("writeREADME: %s", err)
+		return fmt.Errorf("write README: %w", err)
 	}
 	return nil
 }
@@ -102,7 +108,7 @@ func getURL(repoURL string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return fmt.Sprintf("https://api.github.com/%s", "repos"+parsedURL.Path), nil
+	return fmt.Sprintf("https://api.github.com/repos%s", parsedURL.Path), nil
 }
 
 func writeREADME(w io.Writer, repos []Repo) error {
@@ -117,6 +123,6 @@ func writeREADME(w io.Writer, repos []Repo) error {
 			repo.Description,
 			repo.UpdatedAt.Format("2006-01-02 15:04:05")))
 	}
-	fmt.Fprintf(w, fmt.Sprintf(tail, time.Now().Format(time.RFC3339)))
+	fmt.Fprintf(w, fmt.Sprintf(tail, flextime.Now().Format(time.RFC3339)))
 	return nil
 }
