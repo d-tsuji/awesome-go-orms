@@ -28,6 +28,8 @@ Please update **list.txt** (via Pull Request)
 	tail = "\n*Last Automatic Update: %v*"
 )
 
+// Repo is the structure that represents the schema of the github api.
+// See below: https://developer.github.com/v3/repos/
 type Repo struct {
 	Name        string    `json:"name"`
 	Description string    `json:"description"`
