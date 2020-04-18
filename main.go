@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -82,7 +83,12 @@ func run() error {
 	sort.Slice(repos, func(i, j int) bool {
 		return repos[i].Stars > repos[j].Stars
 	})
-	if err := writeREADME(repos); err != nil {
+	readme, err := os.Create("README.md")
+	if err != nil {
+		return err
+	}
+	defer readme.Close()
+	if err := writeREADME(readme, repos); err != nil {
 		return fmt.Errorf("writeREADME: %s", err)
 	}
 	return nil
@@ -96,28 +102,21 @@ func getURL(repoURL string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return fmt.Sprintf("https://api.github.com/%s", "repos" + parsedURL.Path), nil
+	return fmt.Sprintf("https://api.github.com/%s", "repos"+parsedURL.Path), nil
 }
 
-func writeREADME(repos []Repo) error {
-	readme, err := os.OpenFile("README.md", os.O_RDWR|os.O_TRUNC, 0666)
-	if err != nil {
-		return err
-	}
-	defer readme.Close()
-	readme.WriteString(head)
+func writeREADME(w io.Writer, repos []Repo) error {
+	fmt.Fprintf(w, head)
 	for _, repo := range repos {
-		readme.WriteString(
-			fmt.Sprintf("| [%s](%s) | %d | %d | %d | %s | %v |\n",
-				repo.Name,
-				repo.URL,
-				repo.Stars,
-				repo.Forks,
-				repo.OpenIssues,
-				repo.Description,
-				repo.UpdatedAt.Format("2006-01-02 15:04:05")))
+		fmt.Fprintf(w, fmt.Sprintf("| [%s](%s) | %d | %d | %d | %s | %v |\n",
+			repo.Name,
+			repo.URL,
+			repo.Stars,
+			repo.Forks,
+			repo.OpenIssues,
+			repo.Description,
+			repo.UpdatedAt.Format("2006-01-02 15:04:05")))
 	}
-	readme.WriteString(fmt.Sprintf(tail, time.Now().Format(time.RFC3339)))
-
+	fmt.Fprintf(w, fmt.Sprintf(tail, time.Now().Format(time.RFC3339)))
 	return nil
 }
