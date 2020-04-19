@@ -14,8 +14,8 @@ jobs:
 
     - name: Setup Go
       uses: actions/setup-go@v1
-        with:
-          go-version: 1.x
+      with:
+        go-version: 1.x
 
     - name: Update README
       env:
