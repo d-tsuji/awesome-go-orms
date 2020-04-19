@@ -15,12 +15,10 @@ test:
 	go test -v -count=1 ./...
 
 .PHONY: lint
-lint: $(GOBIN)/golint
+lint:
+	go get golang.org/x/lint/golint
 	go vet ./...
 	$(GOBIN)/golint -set_exit_status ./...
-
-$(GOBIN)/golint:
-	cd $(GOBIN) && go get golang.org/x/lint/golint
 
 .PHONY: clean
 clean:
