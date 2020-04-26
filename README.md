@@ -4,27 +4,27 @@ Please update **list.txt** (via Pull Request)
 
 | Project Name | Stars | Forks | Open Issues | Description | Last Update |
 | ------------ | ----- | ----- | ----------- | ----------- | ----------- |
-| [beego](https://github.com/astaxie/beego) | 23690 | 4768 | 841 | beego is an open-source, high-performance web framework for the Go programming language. | 2020-04-19 01:26:11 |
-| [gorm](https://github.com/jinzhu/gorm) | 17938 | 2078 | 653 | The fantastic ORM library for Golang, aims to be developer friendly (v2 is under development, PR based on master branch won't be accepted) | 2020-04-19 03:28:49 |
-| [sqlx](https://github.com/jmoiron/sqlx) | 8132 | 644 | 230 | general purpose extensions to golang's database/sql | 2020-04-19 04:00:04 |
-| [xorm](https://github.com/go-xorm/xorm) | 5933 | 751 | 308 | Simple and Powerful ORM for Go, support mysql,postgres,tidb,sqlite3,mssql,oracle, Moved to https://gitea.com/xorm/xorm | 2020-04-18 21:11:01 |
-| [pg](https://github.com/go-pg/pg) | 3694 | 285 | 73 | Golang ORM with focus on PostgreSQL features and performance | 2020-04-19 04:25:27 |
-| [gorp](https://github.com/go-gorp/gorp) | 3336 | 364 | 128 | Go Relational Persistence - an ORM-ish library for Go | 2020-04-18 15:54:25 |
-| [sqlboiler](https://github.com/volatiletech/sqlboiler) | 2845 | 281 | 69 | Generate a Go ORM tailored to your database schema. | 2020-04-18 14:09:50 |
-| [db](https://github.com/upper/db) | 2129 | 152 | 112 | Data access layer for PostgreSQL, MySQL, SQLite and MongoDB. | 2020-04-18 04:33:40 |
+| [beego](https://github.com/astaxie/beego) | 23723 | 4778 | 847 | beego is an open-source, high-performance web framework for the Go programming language. | 2020-04-25 16:21:04 |
+| [gorm](https://github.com/jinzhu/gorm) | 18057 | 2084 | 662 | The fantastic ORM library for Golang, aims to be developer friendly (v2 is under development, PR based on master branch won't be accepted) | 2020-04-25 20:41:43 |
+| [sqlx](https://github.com/jmoiron/sqlx) | 8174 | 647 | 231 | general purpose extensions to golang's database/sql | 2020-04-25 19:56:17 |
+| [xorm](https://github.com/go-xorm/xorm) | 5957 | 752 | 308 | Simple and Powerful ORM for Go, support mysql,postgres,tidb,sqlite3,mssql,oracle, Moved to https://gitea.com/xorm/xorm | 2020-04-25 18:06:11 |
+| [pg](https://github.com/go-pg/pg) | 3709 | 285 | 76 | Golang ORM with focus on PostgreSQL features and performance | 2020-04-25 06:46:10 |
+| [gorp](https://github.com/go-gorp/gorp) | 3340 | 364 | 128 | Go Relational Persistence - an ORM-ish library for Go | 2020-04-25 19:56:14 |
+| [sqlboiler](https://github.com/volatiletech/sqlboiler) | 2863 | 283 | 59 | Generate a Go ORM tailored to your database schema. | 2020-04-25 22:52:11 |
+| [db](https://github.com/upper/db) | 2133 | 150 | 115 | Data access layer for PostgreSQL, MySQL, SQLite and MongoDB. | 2020-04-25 11:42:07 |
 | [reform](https://github.com/go-reform/reform) | 859 | 46 | 69 | A better ORM for Go, based on non-empty interfaces and code generation. | 2020-04-19 02:30:33 |
-| [pop](https://github.com/gobuffalo/pop) | 852 | 194 | 90 | A Tasty Treat For All Your Database Needs | 2020-04-17 18:29:19 |
+| [pop](https://github.com/gobuffalo/pop) | 857 | 196 | 85 | A Tasty Treat For All Your Database Needs | 2020-04-25 17:18:22 |
 | [qbs](https://github.com/coocood/qbs) | 549 | 104 | 9 | QBS stands for Query By Struct. A Go ORM. | 2020-04-18 08:21:37 |
-| [go-queryset](https://github.com/jirfag/go-queryset) | 505 | 42 | 13 | 100%!t(MISSING)ype-safe ORM for Go (Golang) with code generation and MySQL, PostgreSQL, Sqlite3, SQL Server support. GORM under the hood. | 2020-04-17 09:35:57 |
-| [gormt](https://github.com/xxjwxc/gormt) | 462 | 84 | 9 | mysql database to golang struct | 2020-04-17 06:22:20 |
-| [go-sqlbuilder](https://github.com/huandu/go-sqlbuilder) | 371 | 43 | 0 | A flexible and powerful SQL string builder library plus a zero-config ORM. | 2020-04-15 08:07:57 |
-| [zoom](https://github.com/albrow/zoom) | 254 | 21 | 2 | A blazing-fast datastore and querying engine for Go built on Redis. | 2020-04-12 15:00:35 |
+| [go-queryset](https://github.com/jirfag/go-queryset) | 510 | 41 | 13 | 100%!t(MISSING)ype-safe ORM for Go (Golang) with code generation and MySQL, PostgreSQL, Sqlite3, SQL Server support. GORM under the hood. | 2020-04-23 13:01:03 |
+| [gormt](https://github.com/xxjwxc/gormt) | 468 | 87 | 11 | mysql database to golang struct | 2020-04-23 09:44:19 |
+| [go-sqlbuilder](https://github.com/huandu/go-sqlbuilder) | 373 | 44 | 0 | A flexible and powerful SQL string builder library plus a zero-config ORM. | 2020-04-23 12:45:14 |
+| [zoom](https://github.com/albrow/zoom) | 255 | 21 | 3 | A blazing-fast datastore and querying engine for Go built on Redis. | 2020-04-22 03:04:46 |
 | [grimoire](https://github.com/Fs02/grimoire) | 131 | 15 | 0 | Database access layer for golang | 2020-04-10 12:58:51 |
+| [rel](https://github.com/Fs02/rel) | 115 | 4 | 0 | Golang SQL Database Layer for Layered Architecture. | 2020-04-25 11:47:32 |
 | [go-store](https://github.com/gosuri/go-store) | 100 | 7 | 1 | A simple and fast Redis backed key-value store library for Go | 2020-03-26 16:05:22 |
-| [rel](https://github.com/Fs02/rel) | 89 | 2 | 0 | Golang SQL Database Layer for Layered Architecture. | 2020-04-19 03:13:20 |
-| [GoBatis](https://github.com/runner-mei/GoBatis) | 88 | 11 | 1 | An easy ORM tool for Golang, support MyBatis-Like XML template SQL | 2020-04-16 08:04:47 |
+| [GoBatis](https://github.com/runner-mei/GoBatis) | 88 | 11 | 1 | An easy ORM tool for Golang, support MyBatis-Like XML template SQL | 2020-04-23 10:37:15 |
 | [marlow](https://github.com/dadleyy/marlow) | 79 | 6 | 4 | golang generator for type-safe sql api constructs | 2020-04-14 16:02:10 |
-| [go-firestorm](https://github.com/jschoedt/go-firestorm) | 12 | 2 | 0 | Simple Go ORM for Google/Firebase Cloud Firestore | 2020-03-14 03:48:27 |
+| [go-firestorm](https://github.com/jschoedt/go-firestorm) | 13 | 2 | 0 | Simple Go ORM for Google/Firebase Cloud Firestore | 2020-04-22 12:00:40 |
 | [lore](https://github.com/abrahambotros/lore) | 5 | 1 | 0 | Light Object-Relational Environment (LORE) provides a simple and lightweight pseudo-ORM/pseudo-struct-mapping environment for Go | 2019-08-18 20:19:39 |
 
-*Last Automatic Update: 2020-04-19T14:04:50+09:00*
+*Last Automatic Update: 2020-04-26T00:08:52Z*
