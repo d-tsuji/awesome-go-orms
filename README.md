@@ -4,9 +4,10 @@ Please update **list.txt** (via Pull Request)
 
 | Project Name | Stars | Forks | Open Issues | Description | Last Update |
 | ------------ | ----- | ----- | ----------- | ----------- | ----------- |
-| [beego](https://github.com/astaxie/beego) | 24064 | 4842 | 857 | beego is an open-source, high-performance web framework for the Go programming language. | 2020-06-06 15:33:53 |
+| [beego](https://github.com/astaxie/beego) | 24065 | 4842 | 857 | beego is an open-source, high-performance web framework for the Go programming language. | 2020-06-07 02:19:49 |
+| [gorm](https://github.com/go-gorm/gorm) | 18665 | 2151 | 642 | The fantastic ORM library for Golang, aims to be developer friendly (v2 is under public testing...) | 2020-06-07 03:01:34 |
 | [sqlx](https://github.com/jmoiron/sqlx) | 8434 | 663 | 242 | general purpose extensions to golang's database/sql | 2020-06-06 11:42:32 |
-| [xorm](https://github.com/go-xorm/xorm) | 6058 | 764 | 308 | Simple and Powerful ORM for Go, support mysql,postgres,tidb,sqlite3,mssql,oracle, Moved to https://gitea.com/xorm/xorm | 2020-06-06 07:55:19 |
+| [xorm](https://github.com/go-xorm/xorm) | 6058 | 764 | 308 | Simple and Powerful ORM for Go, support mysql,postgres,tidb,sqlite3,mssql,oracle, Moved to https://gitea.com/xorm/xorm | 2020-06-07 00:46:13 |
 | [pg](https://github.com/go-pg/pg) | 3822 | 290 | 88 | Golang ORM with focus on PostgreSQL features and performance | 2020-06-06 00:54:17 |
 | [gorp](https://github.com/go-gorp/gorp) | 3367 | 362 | 129 | Go Relational Persistence - an ORM-ish library for Go | 2020-06-06 14:46:23 |
 | [sqlboiler](https://github.com/volatiletech/sqlboiler) | 3092 | 299 | 72 | Generate a Go ORM tailored to your database schema. | 2020-06-06 12:03:41 |
@@ -25,6 +26,5 @@ Please update **list.txt** (via Pull Request)
 | [marlow](https://github.com/dadleyy/marlow) | 80 | 7 | 4 | golang generator for type-safe sql api constructs | 2020-05-24 15:23:38 |
 | [go-firestorm](https://github.com/jschoedt/go-firestorm) | 14 | 3 | 0 | Simple Go ORM for Google/Firebase Cloud Firestore | 2020-05-10 22:10:37 |
 | [lore](https://github.com/abrahambotros/lore) | 5 | 1 | 0 | Light Object-Relational Environment (LORE) provides a simple and lightweight pseudo-ORM/pseudo-struct-mapping environment for Go | 2020-05-26 18:34:16 |
-| [gorm](https://github.com/jinzhu/gorm) | 0 | 0 | 0 | Moved to https://github.com/go-gorm/gorm | 2020-06-06 05:38:08 |
 
-*Last Automatic Update: 2020-06-07T00:19:16Z*
+*Last Automatic Update: 2020-06-07T12:06:24+09:00*
