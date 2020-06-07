@@ -4,7 +4,7 @@ https://github.com/go-pg/pg
 https://github.com/jirfag/go-queryset
 https://github.com/huandu/go-sqlbuilder
 https://github.com/gosuri/go-store
-https://github.com/jinzhu/gorm
+https://github.com/go-gorm/gorm
 https://github.com/xxjwxc/gormt
 https://github.com/go-gorp/gorp
 https://github.com/Fs02/grimoire
