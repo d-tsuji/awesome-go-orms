@@ -13,7 +13,7 @@ https://github.com/dadleyy/marlow
 https://github.com/gobuffalo/pop
 https://github.com/coocood/qbs
 https://github.com/go-reform/reform
-https://github.com/Fs02/rel
+https://github.com/go-rel/rel
 https://github.com/volatiletech/sqlboiler
 https://github.com/upper/db
 https://github.com/go-xorm/xorm
