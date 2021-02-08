@@ -1,0 +1,23 @@
+run:
+  timeout: 10m
+
+linters:
+  disable-all: true
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - deadcode
+    - unused
+    - structcheck
+    - gosimple
+    - misspell
+
+issues:
+  exclude-use-default: false
+
+linters-settings:
+  govet:
+    enable-all: true
+    disable:
+      - shadow

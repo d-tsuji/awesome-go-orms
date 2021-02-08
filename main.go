@@ -52,7 +52,9 @@ func run() error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer f.Close()
+	defer func() {
+		_ = f.Close()
+	}()
 
 	sc := bufio.NewScanner(f)
 
@@ -70,7 +72,9 @@ func run() error {
 				if err != nil {
 					return fmt.Errorf("http get request: %w", err)
 				}
-				defer resp.Body.Close()
+				defer func() {
+					_ = resp.Body.Close()
+				}()
 				if resp.StatusCode != http.StatusOK {
 					return fmt.Errorf("response code: %d", resp.StatusCode)
 				}
@@ -99,7 +103,9 @@ func run() error {
 	if err != nil {
 		return err
 	}
-	defer readme.Close()
+	defer func() {
+		_ = readme.Close()
+	}()
 	if err := writeREADME(readme, repos); err != nil {
 		return fmt.Errorf("write README: %w", err)
 	}
@@ -118,17 +124,17 @@ func getURL(repoURL string) (string, error) {
 }
 
 func writeREADME(w io.Writer, repos []Repo) error {
-	fmt.Fprintf(w, head)
+	fmt.Fprint(w, head)
 	for _, repo := range repos {
-		fmt.Fprintf(w, fmt.Sprintf("| [%s](%s) | %d | %d | %d | %s | %v |\n",
+		fmt.Fprintf(w, "| [%s](%s) | %d | %d | %d | %s | %v |\n",
 			repo.Name,
 			repo.URL,
 			repo.Stars,
 			repo.Forks,
 			repo.OpenIssues,
 			repo.Description,
-			repo.UpdatedAt.Format("2006-01-02 15:04:05")))
+			repo.UpdatedAt.Format("2006-01-02 15:04:05"))
 	}
-	fmt.Fprintf(w, fmt.Sprintf(tail, flextime.Now().Format(time.RFC3339)))
+	fmt.Fprintf(w, tail, flextime.Now().Format(time.RFC3339))
 	return nil
 }

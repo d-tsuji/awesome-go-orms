@@ -6,19 +6,30 @@ export GO111MODULE=on
 .PHONY: all
 all: clean build
 
+.PHONY: deps
+deps:
+	go mod tidy
+
 .PHONY: build
 build:
-	go build -ldflags=$(BUILD_LDFLAGS) -o $(BIN)
+	go build -ldflags=$(BUILD_LDFLAGS) -trimpath -o $(BIN)
 
 .PHONY: test
 test:
 	go test -v -count=1 ./...
 
+.PHONY: devel-deps
+devel-deps: deps
+	sh -c '\
+      tmpdir=$$(mktemp -d); \
+      cd $$tmpdir; \
+      go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.36.0; \
+      rm -rf $$tmpdir'
+
 .PHONY: lint
-lint:
-	go get golang.org/x/lint/golint
+lint: devel-deps
 	go vet ./...
-	$(GOBIN)/golint -set_exit_status ./...
+	golangci-lint run --config .golangci.yml ./...
 
 .PHONY: clean
 clean:
