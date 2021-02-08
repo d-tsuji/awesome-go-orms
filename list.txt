@@ -1,4 +1,4 @@
-https://github.com/astaxie/beego
+https://github.com/beego/beego
 https://github.com/jschoedt/go-firestorm
 https://github.com/go-pg/pg
 https://github.com/jirfag/go-queryset
