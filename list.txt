@@ -1,3 +1,4 @@
+https://github.com/ent/ent
 https://github.com/beego/beego
 https://github.com/jschoedt/go-firestorm
 https://github.com/go-pg/pg
