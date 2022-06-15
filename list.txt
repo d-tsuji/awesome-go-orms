@@ -23,3 +23,4 @@ https://github.com/jmoiron/sqlx
 https://github.com/runner-mei/GoBatis
 https://github.com/prisma/prisma-client-go
 https://github.com/go-jet/jet
+https://github.com/uptrace/bun
