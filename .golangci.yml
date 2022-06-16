@@ -21,3 +21,4 @@ linters-settings:
     enable-all: true
     disable:
       - shadow
+      - fieldalignment

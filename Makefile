@@ -20,11 +20,7 @@ test:
 
 .PHONY: devel-deps
 devel-deps: deps
-	sh -c '\
-      tmpdir=$$(mktemp -d); \
-      cd $$tmpdir; \
-      go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.36.0; \
-      rm -rf $$tmpdir'
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2
 
 .PHONY: lint
 lint: devel-deps
