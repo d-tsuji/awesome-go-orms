@@ -1,6 +1,22 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      # Ignore files that are not used in production
+      - "**.md"
+      - "LICENSE"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths-ignore:
+      # Ignore files that are not used in production
+      - "**.md"
+      - "LICENSE"
 
 jobs:
   test:
