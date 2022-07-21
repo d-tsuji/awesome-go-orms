@@ -30,6 +30,7 @@ Please update **list.txt** (via Pull Request)
 | [GoBatis](https://github.com/runner-mei/GoBatis) | 108 | 17 | 1 | An easy ORM tool for Golang, support MyBatis-Like XML template SQL | 2022-07-14 03:00:05 |
 | [marlow](https://github.com/dadleyy/marlow) | 82 | 7 | 2 | golang generator for type-safe sql api constructs | 2022-05-01 09:02:34 |
 | [go-firestorm](https://github.com/jschoedt/go-firestorm) | 35 | 7 | 0 | Simple Go ORM for Google/Firebase Cloud Firestore | 2022-07-09 03:31:21 |
+| [apijson-go](https://github.com/j2go/apijson-go) | 23 | 7 | 2 | Go ORM for Tecent/APIJSON, Automatically CRUD without any code  | 2022-04-27 20:22:00 |
 | [lore](https://github.com/abrahambotros/lore) | 10 | 3 | 0 | Light Object-Relational Environment (LORE) provides a simple and lightweight pseudo-ORM/pseudo-struct-mapping environment for Go | 2022-02-08 12:25:18 |
 
 *Last Automatic Update: 2022-07-17T01:53:22Z*
