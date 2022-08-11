@@ -61,34 +61,16 @@ func run() error {
 	var repos []Repo
 	for sc.Scan() {
 		repoName := sc.Text()
-		if strings.HasPrefix(repoName, "https://github.com/") {
-			var r Repo
-			fn := func() error {
-				apiURL, err := getURL(repoName)
-				if err != nil {
-					return fmt.Errorf("get URL for api call: %w", err)
-				}
-				resp, err := http.Get(apiURL)
-				if err != nil {
-					return fmt.Errorf("http get request: %w", err)
-				}
-				defer func() {
-					_ = resp.Body.Close()
-				}()
-				if resp.StatusCode != http.StatusOK {
-					return fmt.Errorf("response code: %d", resp.StatusCode)
-				}
-				if err := json.NewDecoder(resp.Body).Decode(&r); err != nil {
-					return fmt.Errorf("json decode: %w", err)
-				}
-				return nil
-			}()
-			if err := fn; err != nil {
-				return err
-			}
-			repos = append(repos, r)
-		} else if repoName != "" {
+		if repoName != "" {
 			log.Printf("URL: %s is not supported\n", repoName)
+			continue
+		}
+		if strings.HasPrefix(repoName, "https://github.com/") {
+			r, err := fetchRepo(repoName)
+			if err != nil {
+				return fmt.Errorf("fetch repo: %w", err)
+			}
+			repos = append(repos, *r)
 		}
 	}
 	if err := sc.Err(); err != nil {
@@ -108,6 +90,28 @@ func run() error {
 	}()
 	writeREADME(readme, repos)
 	return nil
+}
+
+func fetchRepo(name string) (*Repo, error) {
+	var r *Repo
+	apiURL, err := getURL(name)
+	if err != nil {
+		return nil, fmt.Errorf("get URL for api call: %w", err)
+	}
+	resp, err := http.Get(apiURL)
+	if err != nil {
+		return nil, fmt.Errorf("http get request: %w", err)
+	}
+	defer func() {
+		_ = resp.Body.Close()
+	}()
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("response code: %d", resp.StatusCode)
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&r); err != nil {
+		return nil, fmt.Errorf("json decode: %w", err)
+	}
+	return r, nil
 }
 
 func getURL(repoURL string) (string, error) {
