@@ -49,11 +49,7 @@ Please update **list.txt** (via Pull Request)
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			w := &bytes.Buffer{}
-			err := writeREADME(w, tt.args.repos)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("writeREADME() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
+			writeREADME(w, tt.args.repos)
 			if gotW := w.String(); gotW != tt.wantW {
 				t.Errorf("writeREADME() gotW = %v, want %v", gotW, tt.wantW)
 			}

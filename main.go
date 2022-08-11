@@ -106,9 +106,7 @@ func run() error {
 	defer func() {
 		_ = readme.Close()
 	}()
-	if err := writeREADME(readme, repos); err != nil {
-		return fmt.Errorf("write README: %w", err)
-	}
+	writeREADME(readme, repos)
 	return nil
 }
 
@@ -123,7 +121,7 @@ func getURL(repoURL string) (string, error) {
 	return fmt.Sprintf("https://api.github.com/repos%s", parsedURL.Path), nil
 }
 
-func writeREADME(w io.Writer, repos []Repo) error {
+func writeREADME(w io.Writer, repos []Repo) {
 	fmt.Fprint(w, head)
 	for _, repo := range repos {
 		fmt.Fprintf(w, "| [%s](%s) | %d | %d | %d | %s | %v |\n",
@@ -136,5 +134,4 @@ func writeREADME(w io.Writer, repos []Repo) error {
 			repo.UpdatedAt.Format("2006-01-02 15:04:05"))
 	}
 	fmt.Fprintf(w, tail, flextime.Now().Format(time.RFC3339))
-	return nil
 }

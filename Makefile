@@ -20,7 +20,7 @@ test:
 
 .PHONY: devel-deps
 devel-deps: deps
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.48.0
 
 .PHONY: lint
 lint: devel-deps
