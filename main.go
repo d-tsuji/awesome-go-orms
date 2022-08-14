@@ -61,16 +61,15 @@ func run() error {
 	var repos []Repo
 	for sc.Scan() {
 		repoName := sc.Text()
-		if repoName != "" {
-			log.Printf("URL: %s is not supported\n", repoName)
-			continue
-		}
 		if strings.HasPrefix(repoName, "https://github.com/") {
 			r, err := fetchRepo(repoName)
 			if err != nil {
 				return fmt.Errorf("fetch repo: %w", err)
 			}
 			repos = append(repos, *r)
+		} else if repoName != "" {
+			log.Printf("URL: %s is not supported\n", repoName)
+			continue
 		}
 	}
 	if err := sc.Err(); err != nil {
