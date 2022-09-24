@@ -25,3 +25,5 @@ https://github.com/prisma/prisma-client-go
 https://github.com/go-jet/jet
 https://github.com/uptrace/bun
 https://github.com/kyleconroy/sqlc
+https://github.com/xo/xo
+https://github.com/jschaf/pggen
