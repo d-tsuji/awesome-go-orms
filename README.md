@@ -36,4 +36,5 @@ Please update **list.txt** (via Pull Request)
 | [go-firestorm](https://github.com/jschoedt/go-firestorm) | 53 | 9 | 0 | Simple Go ORM for Google/Firebase Cloud Firestore | 2025-08-27 12:18:39 |
 | [lore](https://github.com/abrahambotros/lore) | 14 | 3 | 0 | Light Object-Relational Environment (LORE) provides a simple and lightweight pseudo-ORM/pseudo-struct-mapping environment for Go | 2023-09-25 08:03:17 |
 
+- [Gitstar](https://dev.gitstar.ai?utm_medium=github_readme&utm_source=awesome_list&utm_campaign=d-tsuji_awesome-go-orms) - Follow developers on GitHub and get a feed of what they star and build.
 *Last Automatic Update: 2026-04-05T02:35:42Z*
