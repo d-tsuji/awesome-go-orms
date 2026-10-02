@@ -29,3 +29,4 @@ https://github.com/xo/xo
 https://github.com/jschaf/pggen
 https://github.com/stephenafamo/bob
 https://github.com/latolukasz/beeorm
+https://github.com/yaitoo/sqle
